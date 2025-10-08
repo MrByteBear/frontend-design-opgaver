@@ -5,8 +5,91 @@
     --color-text-button: #FFF;
 
     /* Når du synes, du er færdig, så ændr værdien herunder til '1' for at se dit resultat i browseren */
-    --hide-overlay: 0;
+    --hide-overlay: 1;
 }
 
 
 /* Begynd her... */
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 1100px) 1fr;
+    grid-template-rows: 10% 1fr 10%;
+    column-gap: 1rem;
+
+    >* {
+        grid-column: 2;
+        grid-row: 2;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: inherit;
+
+        > :first-child {
+            align-self: center;
+            display: grid;
+            grid-auto-rows: max-content;
+            row-gap: 1rem;
+
+            h1 {
+                color: var(--color-heading);
+                font-size: 4rem;
+                font-weight: bold;
+            }
+
+            button {
+                background-color: var(--color-bg-button);
+                color: var(--color-text-button);
+                padding: 1rem 2rem;
+                border-radius: 2rem;
+                font-weight: bold;
+                max-width: fit-content;
+                max-height: fit-content;
+            }
+        }
+
+        > :last-child {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            grid-template-areas:
+                ". img1 ."
+                "img2 img3 img4"
+                "img5 img3 img6"
+                ". img7 .";
+            gap: 1rem;
+
+            img {
+                border-radius: 1rem;
+            }
+
+            img:nth-of-type(1) {
+                grid-area: img1;
+            }
+
+            img:nth-of-type(2) {
+                grid-area: img2;
+            }
+
+            img:nth-of-type(3) {
+                grid-area: img3;
+            }
+
+            img:nth-of-type(4) {
+                grid-area: img4;
+            }
+
+            img:nth-of-type(5) {
+                grid-area: img5;
+            }
+
+            img:nth-of-type(6) {
+                grid-area: img6;
+            }
+
+            img:nth-of-type(7) {
+                grid-area: img7;
+            }
+        }
+    }
+
+}
