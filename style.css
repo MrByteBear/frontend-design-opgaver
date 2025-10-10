@@ -1,34 +1,47 @@
 section {
+
     max-width: 1200px;
     padding-inline: 1rem;
 
     display: grid;
     grid-template-rows: 1fr auto;
     grid-template-columns: 2.5fr 1.5fr 1fr;
+    grid-template-areas: 
+        "figure content content"
+        "figure caption .";
     gap: 1.5rlh;
     color: var(--gray-900);
 
     h2 {
         font-size: 2.5rem;
-        z-index: 1;
         line-height: 1.1;
         color: var(--gray-1000);
         margin-block-start: calc(.5cap - .5lh);
     }
 
     .content {
+        /* grid-area: 1 / 2 / span 1 / span 2; */
+        grid-area: content;
 
         >*+* {
             margin-top: .75rlh;
         }
     }
 
-    figure {}
+    figure {
+        /* grid-area: 1 / 1 / span 2 / span 2; */
+        /* I mean... i guess this works? Make the whole thing square, or smth */
+        grid-area: figure / figure / caption / caption;
+        display: grid;
+        grid: subgrid / subgrid;
+    }
 
     img {
         align-self: stretch;
         object-fit: cover;
         aspect-ratio: 1.35;
+        
+        grid-area: 1 / 1 / span 2 / span 1;
     }
 
     figcaption {
@@ -37,5 +50,15 @@ section {
         color: var(--gray-900);
         background: var(--gray-100);
         padding: .4rlh .6rlh;
+
+        /* grid-area: -1 / -1 / -2 / -2; */
+        grid-area: caption;
+    }
+    @media screen and (width < 600px) {
+        grid: revert;
+        .content, figure {
+            display: revert;
+            grid-area: revert;
+        }
     }
 }
