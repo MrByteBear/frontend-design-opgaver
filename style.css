@@ -15,7 +15,7 @@ article {
 
 .picture {
     display: grid;
-    padding: .5rem;
+    /*padding: .5rem; No padding, better to make the img fit the whole area. */
 
     >* {
         grid-area: 1 / 1;
@@ -25,7 +25,14 @@ article {
         place-self: start;
         margin: 1rem;
         z-index: 1;
-        color: #fff;
+        /* Added a circular background to btn. Changed color to make it darker instead of white. */
+        color: #000000a8;
+        background: #fff;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 100%;
+        display: grid;
+        place-content: center;
     }
 
     .image-count {
@@ -34,14 +41,16 @@ article {
         letter-spacing: 2px;
         line-height: 1;
         place-self: end;
-        background: #BDC4CE;
+        /* Same color but with decreased lightness. Makes it darker */
+        background: hsl(215.3,14.8%,27.5%);
         color: #fff;
         margin: 1rem;
     }
 
     img {
         border: 1px solid #DADCEB;
-        border-radius: .5rem;
+        /* Fixed border radius to better match the article container. */
+        border-radius: 1rem 1rem 0rem 0rem;
     }
 }
 
@@ -49,28 +58,48 @@ article {
     display: grid;
     gap: 1rem;
     padding: 0 2rem 1rem;
+    header {
+        margin-block-start: 1em;
+    }
 }
 
 .title {
     font-family: 'Abril Fatface', sans-serif;
     font-weight: 400;
     font-size: 2rem;
-    color: #3C55CC;
+    /* color: #3C55CC; Disabling this, for better consistency. */
 }
 
 .location {
-    color: #C8C9CB;
-    text-transform: uppercase;
+    color: #585858; /* Made color AAA contrast proof. */
+    /* text-transform: uppercase;  No uppercase pls */
     font-size: .95em;
 }
 
 .description p {
-    text-align: center;
+   /* text-align: center; No center text please. */
+    color: #323232; /* To make the P text slightly darker than Heading. I guess? */
+}
+
+
+.description {
+    /* Just for fun, set a max "height" on the container, based on text. */
+    /* Will scroll when there is too much text. Added padding-right to make space for scrollbar. */
+    max-block-size: 20ch;
+    overflow-y: scroll;
+    padding-right: 0.5rem;
+    > p:not(:first-of-type) {
+        margin-block-start: 1em;
+    }
+    
 }
 
 .amenities-details {
     display: flex;
     gap: 1rem;
+    /* Added border and padding, to better seperate elements, looks nicer. */
+    border-block: 0.063rem solid #585858;
+    padding-block: 0.5rem;
 
     li {
         flex: 1;
@@ -78,8 +107,12 @@ article {
         gap: .75rem;
         place-items: center;
         padding: .25rem;
-        background: #F0F2FF;
+        /* background: #F0F2FF; Nah, doesn't need this. */
         color: #3C55CC;
+        p {
+            /* Changed color of <p> text, to improve contrast and readability. */
+            color: #323232;
+        }
     }
 }
 
@@ -101,17 +134,21 @@ footer {
         line-height: 1;
         border-radius: 8px;
         font-weight: 500;
-        font: inherit;
-        background: #F0F2FF;
-        color: #3C55CC;
+        /* Fixed broken font inheriting. Looks nicer now. */
+        font-family: inherit;
+        font-size: inherit;
+        /* Changed the colors here. */
+        background: #364DB9;
+        color: #FFF;
     }
 
     .price {
         font-weight: 600;
 
         span {
-            color: #908F9F;
-            font-size: 0.75em;
+            /* Fixed bad color contrast, and removed font size. */
+            color: #585763;
+            /*font-size: 0.75em;*/
             font-weight: 400;
         }
     }
