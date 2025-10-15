@@ -101,7 +101,7 @@ article {
         margin-block: var(--space-s);
         line-height: var(--line-height);
     }
-    .text-lead, figcaption {
+    h1, h2, h3, .text-lead, figcaption {
         color: var(--gray-900);
     }
     .text-small {
