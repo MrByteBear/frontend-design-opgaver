@@ -1,3 +1,17 @@
+/*
+
+
+1. Anvend Utopias Type Scale Calculator til at generere en flydende typografiskala til at definere skriftstørrelser for forskellige elementer som overskrifter og paragraffer.
+
+2. Implementering af Utopias spacingskala for at ensrette afstanden mellem de forskellige elementer.
+
+3. Juster farven på brødtekst for at sikre, at overskrifter skiller sig ud, og overvej at bruge en lettere farve for at reducere visuel vægt af mindre vigtig tekst – brug de medfølgende gråtoner (i :root).
+
+4. Øg linjehøjden for at forbedre læsbarheden, baseret på skriftstørrelse og tekstens tæthed.
+
+Du forventes at tage stilling til skriftstørrelser, linjeafstand, marginer, og farveværdier i din løsning.
+
+*/
 :root {
     --gray-50: #f9fafb;
     --gray-100: #f3f4f6;
@@ -9,8 +23,91 @@
     --gray-700: #374151;
     --gray-800: #1f2937;
     --gray-900: #111827;
+
+    --fs--1: clamp(0.8rem, 0.7853rem + 0.0733vw, 0.844rem);
+    --fs-0: clamp(1rem, 0.9583rem + 0.2083vw, 1.125rem);
+    --fs-1: clamp(1.25rem, 1.1668rem + 0.416vw, 1.4996rem);
+    --fs-2: clamp(1.5625rem, 1.417rem + 0.7275vw, 1.999rem);
+    --fs-3: clamp(1.9531rem, 1.7159rem + 1.1859vw, 2.6647rem);
+    --fs-4: clamp(2.4414rem, 2.0712rem + 1.851vw, 3.552rem);
+    --fs-5: clamp(3.0518rem, 2.4907rem + 2.8051vw, 4.7348rem);
+
+    --line-height: calc(1em + 0.5rem);
+
+    --space-3xs: clamp(0.25rem, 0.2255rem + 0.1087vw, 0.3125rem);
+    --space-2xs: clamp(0.5rem, 0.4755rem + 0.1087vw, 0.5625rem);
+    --space-xs: clamp(0.75rem, 0.7011rem + 0.2174vw, 0.875rem);
+    --space-s: clamp(1rem, 0.9511rem + 0.2174vw, 1.125rem);
+    --space-m: clamp(1.5rem, 1.4266rem + 0.3261vw, 1.6875rem);
+    --space-l: clamp(2rem, 1.9022rem + 0.4348vw, 2.25rem);
+    --space-xl: clamp(3rem, 2.8533rem + 0.6522vw, 3.375rem);
+    --space-2xl: clamp(4rem, 3.8043rem + 0.8696vw, 4.5rem);
+    --space-3xl: clamp(6rem, 5.7065rem + 1.3043vw, 6.75rem);
+
 }
 
 body {
     font-family: system-ui, sans-serif;
+    font-size: var(--fs-0);
+    line-height: var(--line-height);
+    /* Pretty doesn't work on Firefox. So we use this, because browser support is important... */
+    text-wrap: balance!important; 
+    color: var(--gray-700);
+}
+
+h1 {
+    font-size: var(--fs-5);
+}
+
+h2 {
+    font-size: var(--fs-4);
+}
+
+h3 {
+    font-size: var(--fs-3);
+}
+
+h4 {
+    font-size: var(--fs-2);
+}
+
+.text-lead {
+    font-size: var(--fs-1);
+}
+
+article {
+    max-width: 65ch;
+    margin-inline: auto;
+    margin-block: 3rem;
+    padding-inline: 1rem;
+
+    > * {
+        line-height: var(--line-height);
+    }
+    > * + * {
+        margin-block-start: var(--flow-space, 1em);
+    }
+    h2 {
+        --flow-space: var(--space-l);
+    }
+    h3, h4, .text-lead {
+        --flow-space: var(--space-m);
+    }
+    p:not(.text-lead, .text-small) {
+        --flow-space: var(--space-s);
+    }
+    figcaption {
+        font-size: var(--fs-1);
+        margin-block: var(--space-s);
+        line-height: var(--line-height);
+    }
+    .text-lead, figcaption {
+        color: var(--gray-900);
+    }
+    .text-small {
+        font-size: var(--fs--1);
+        color: var(--gray-500);
+        --flow-space: var(--space-xs);
+    }
+
 }
