@@ -16,5 +16,26 @@ const { cardContent } = Astro.props;
 <style>
   ul {
     list-style: none;
+    padding: 0; /* Removing existing padding */
+    display: flex;
+    gap: inherit;
+    overflow-x: scroll;
+    /* Chooses whichever value is highest. */
+    /* Calc part : 50% (aligns middle) - offset (the 2nd column in our grid, divided by two). */
+    /* Will align the left and right side of the container perfectly in the 2nd column. */
+    /* This is what will cause an overflow, enabling the use of overflow-x. */
+    padding-inline: max(1rem, 50% - var(--content-width) / 2);
+    padding-block-end: 1rem; /* Add a lil cheeky "row-gap" at the end of the container, matching the previous row-gap. */
+    > * {
+      display: block;
+      padding: var(--card-padding);
+      background: var(--card-background);
+      border-radius: var(--card-border-radius);
+      flex: 1 0 calc(var(--content-width) / 2);
+      align-self: start;
   }
+      > * + * {
+        color: var(--card-text-color);
+      }
+    }
 </style>
